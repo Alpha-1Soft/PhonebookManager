@@ -43,7 +43,7 @@ public class DatabaseManager {
         return updatedRow;
     }
 
-    public long deleteStudent(int id){
+    public long deleteContactInfo(int id){
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
         long deletedRow = sqLiteDatabase.delete(DatabaseHelper.CONTACT_TABLE,DatabaseHelper.CONTACT_ID+" =? ",
                 new String[]{String.valueOf(id)});
