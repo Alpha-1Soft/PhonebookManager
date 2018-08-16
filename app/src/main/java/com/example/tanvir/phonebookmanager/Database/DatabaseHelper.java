@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class SqliteDatabase extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "contacts.db";
     public static final int DATABASE_VERSION = 1;
 
@@ -22,7 +22,7 @@ public class SqliteDatabase extends SQLiteOpenHelper{
             +CONTACT_NAME+" text,"+CONTACT_NUMBER+" text,"
             +CONTACT_EMAIL+" text,"+CONTACT_DESCRIPTION+" text);";
 
-    public SqliteDatabase(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
