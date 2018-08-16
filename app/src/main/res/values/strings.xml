@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PhonebookManager</string>
+    <string name="description">Description</string>
+    <string name="email_address">Email Address</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="call_with_diffrent_media">Call with diffrent media</string>
+</resources>
