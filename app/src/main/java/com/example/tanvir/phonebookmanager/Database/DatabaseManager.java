@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 
 import com.example.tanvir.phonebookmanager.models.ContactsInfo;
 
@@ -18,7 +17,7 @@ public class DatabaseManager {
         databaseHelper = new DatabaseHelper(context);
     }
 
-    long addContactInfo(ContactsInfo contactsInfo) {
+    public long addContactInfo(ContactsInfo contactsInfo) {
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.CONTACT_NAME,contactsInfo.getContactName());
