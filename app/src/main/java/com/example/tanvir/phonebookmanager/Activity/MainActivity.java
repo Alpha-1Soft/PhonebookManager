@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements ContactsFragment.
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayoutId);
         tabLayout.addTab(tabLayout.newTab().setText("Contacts"));
-        tabLayout.addTab(tabLayout.newTab().setText("Favorite"));
+        tabLayout.addTab(tabLayout.newTab().setText("Favorites"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.viewpagerId);
