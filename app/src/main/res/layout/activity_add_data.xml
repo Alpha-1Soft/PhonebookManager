@@ -7,75 +7,86 @@
     tools:context=".Activity.AddDataActivity"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#5348E8">
+
         <Button
             android:id="@+id/cancelBtonAdd"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:text="@string/cancel"
             android:textColor="#ffffff"
-            android:background="#5348E8"/>
+            android:background="#5348E8"
+            android:onClick="cancelOnSAve"/>
         <Button
             android:id="@+id/saveButton"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:text="@string/save"
             android:textColor="#ffffff"
-            android:background="#5348E8"/>
+            android:background="#5348E8"
+            />
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/nameEtOnSave"
-            android:padding="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="Name"
-            android:background="@drawable/listview_border"
-            android:layout_marginBottom="10dp"
-            android:inputType="text"
-            />
+        android:background="#ffffff">
 
-        <EditText
-            android:id="@+id/phoneNumberEtOnSave"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="@string/phone_number"
-            android:background="@drawable/listview_border"
-            android:layout_marginBottom="10dp"
-            android:inputType="number"
-            android:padding="5dp"
-            android:maxLength="11"/>
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            >
+            <EditText
+                android:id="@+id/nameEtOnSave"
+                android:padding="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Name"
+                android:layout_marginBottom="10dp"
+                android:inputType="text"
+                android:background="@drawable/border"
+                />
 
-        <EditText
-            android:id="@+id/emailEtOnSave"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="@string/email_address"
-            android:background="@drawable/listview_border"
-            android:layout_marginBottom="10dp"
-            android:inputType="text"
-            android:padding="5dp"
-            />
+            <EditText
+                android:id="@+id/phoneNumberEtOnSave"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="@string/phone_number"
+                android:layout_marginBottom="10dp"
+                android:inputType="number"
+                android:padding="8dp"
+                android:maxLength="11"
+                android:background="@drawable/border"/>
 
-        <EditText
-            android:id="@+id/descriptionEtOnSave"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:background="@drawable/listview_border"
-            android:hint="@string/description"
-            android:gravity="left|start"
-            android:padding="5dp"
-            android:inputType="text"/>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/emailEtOnSave"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="@string/email_address"
+                android:layout_marginBottom="10dp"
+                android:inputType="text"
+                android:padding="8dp"
+                android:background="@drawable/border"
+                />
+
+            <EditText
+                android:id="@+id/descriptionEtOnSave"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:hint="@string/description"
+                android:gravity="left|start"
+                android:padding="8dp"
+                android:inputType="text"
+                android:background="@drawable/border"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
