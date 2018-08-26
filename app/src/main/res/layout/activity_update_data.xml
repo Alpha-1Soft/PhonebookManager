@@ -14,21 +14,27 @@
         <Button
             android:id="@+id/cancelBtOnUpdate"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:text="@string/cancel"
             android:textColor="#ffffff"
-            android:background="#5348E8"/>
+            android:background="#5348E8"
+            android:onClick="cancelBtOnUpdate" />
         <Button
             android:id="@+id/updateButtonId"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:layout_weight="1"
             android:text="@string/update"
             android:textColor="#ffffff"
-            android:background="#5348E8"/>
+            android:background="#5348E8"
+            android:onClick="updateButton"/>
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,9 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/name"
-            android:padding="5dp"
-            android:background="@drawable/listview_border"
+            android:padding="8dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/border"
             />
 
         <EditText
@@ -50,27 +56,28 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="@string/phone_number"
-            android:padding="5dp"
-            android:background="@drawable/listview_border"
-            android:layout_marginBottom="10dp"/>
+            android:padding="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border"/>
 
         <EditText
             android:id="@+id/emailEtonUpdate"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Email Address"
-            android:padding="5dp"
-            android:background="@drawable/listview_border"
-            android:layout_marginBottom="10dp"/>
+            android:padding="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border"/>
 
         <EditText
             android:id="@+id/descriptionEtOnUpdate"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:background="@drawable/listview_border"
             android:hint="@string/description"
-            android:padding="5dp"
-            android:gravity="left|start"/>
+            android:padding="8dp"
+            android:gravity="left|start"
+            android:background="@drawable/border"/>
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
