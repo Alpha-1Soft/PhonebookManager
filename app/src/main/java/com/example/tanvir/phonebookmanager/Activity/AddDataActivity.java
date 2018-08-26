@@ -1,5 +1,6 @@
 package com.example.tanvir.phonebookmanager.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,7 +27,7 @@ public class AddDataActivity extends AppCompatActivity {
         emailEt = (EditText)findViewById(R.id.emailEtOnSave);
         descriptionEt = (EditText)findViewById(R.id.descriptionEtOnSave);
 
-       databaseManager=new DatabaseManager(this);
+        databaseManager=new DatabaseManager(this);
 
         saveBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +58,11 @@ public class AddDataActivity extends AppCompatActivity {
             long l = databaseManager.addContactInfo(contactsInfo);
 
             if(l>0){
-                Toast.makeText(this, "Contact informations added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Contact information added", Toast.LENGTH_SHORT).show();
                 finish();
+                Intent intent = new Intent(AddDataActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
             else{
                 Toast.makeText(this, "Unable to add contact information", Toast.LENGTH_SHORT).show();
