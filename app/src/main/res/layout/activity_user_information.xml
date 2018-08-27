@@ -22,10 +22,13 @@
               android:layout_height="wrap_content"
               android:gravity="right">
               <CheckBox
+                  android:id="@+id/favoriteCheckbox"
+                  android:onClick="favoriteCheckbox"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:clickable="true"
-                  android:focusable="true"
+                  style="?android:attr/starStyle"
+
                   />
               <Button
                   android:layout_width="wrap_content"
