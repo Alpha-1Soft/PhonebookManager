@@ -54,7 +54,7 @@ public class AddDataActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter your name.", Toast.LENGTH_SHORT).show();
         }
         else{
-            ContactsInfo contactsInfo = new ContactsInfo(nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString());
+            ContactsInfo contactsInfo = new ContactsInfo(nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"0");
             long l = databaseManager.addContactInfo(contactsInfo);
 
             if(l>0){
