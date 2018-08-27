@@ -15,12 +15,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CONTACT_NUMBER = "number";
     public static final String CONTACT_EMAIL = "email";
     public static final String CONTACT_DESCRIPTION = "description";
+    public static final String CONTACT_RATING = "rating";
 
     //query for create table
     public static final String CREATE_TABLE_QUERY = "create table "+CONTACT_TABLE
             +"("+CONTACT_ID+" integer primary key autoincrement,"
             +CONTACT_NAME+" text,"+CONTACT_NUMBER+" text,"
-            +CONTACT_EMAIL+" text,"+CONTACT_DESCRIPTION+" text);";
+            +CONTACT_EMAIL+" text,"+CONTACT_DESCRIPTION+" text,"+CONTACT_RATING+" text);";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
