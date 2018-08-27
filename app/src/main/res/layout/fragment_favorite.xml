@@ -16,26 +16,47 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_margin="1dp"
             >
 
             <SearchView
-                android:id="@+id/searchView"
+                android:id="@+id/favSearchView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:queryHint="Search Here"
                 android:iconifiedByDefault="false"
+                android:layout_alignParentTop="true"
                 android:background="#ffffff"
+                android:searchIcon="@drawable/ic_search_black_24dp"
                 />
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_margin="4dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:gravity="center">
         <ListView
+            android:id="@+id/favListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#000"
+            android:dividerHeight="2dp"
+            android:divider="#eaeaea"
             >
         </ListView>
 
+        <TextView
+            android:id="@+id/favEmptyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Empty result"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
 
 </LinearLayout>
