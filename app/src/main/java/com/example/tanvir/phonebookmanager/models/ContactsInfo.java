@@ -7,20 +7,28 @@ public class ContactsInfo {
     private String contactNumber;
     private String contactEmail;
     private String contactDescription;
+    private String contactRating;
 
-    public ContactsInfo(int id, String contactName, String contactNumber, String contactEmail, String contactDescription) {
+    public ContactsInfo(int id, String contactName, String contactNumber, String contactEmail, String contactDescription,String contactRating) {
         this.id = id;
         this.contactName = contactName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
         this.contactDescription = contactDescription;
+        this.contactRating = contactRating;
     }
 
-    public ContactsInfo(String contactName, String contactNumber, String contactEmail, String contactDescription) {
+    public String getContactRating() {
+        return contactRating;
+    }
+
+    public ContactsInfo(String contactName, String contactNumber, String contactEmail, String contactDescription, String contactRating) {
         this.contactName = contactName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
         this.contactDescription = contactDescription;
+        this.contactRating = contactRating;
+
     }
 
     public int getId() {
@@ -42,5 +50,4 @@ public class ContactsInfo {
     public String getContactDescription() {
         return contactDescription;
     }
-
 }
