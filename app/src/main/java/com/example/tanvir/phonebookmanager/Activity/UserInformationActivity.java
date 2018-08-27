@@ -1,22 +1,32 @@
 package com.example.tanvir.phonebookmanager.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tanvir.phonebookmanager.Database.DatabaseManager;
 import com.example.tanvir.phonebookmanager.Fragments.ContactsFragment;
+import com.example.tanvir.phonebookmanager.Fragments.FavoriteFragment;
 import com.example.tanvir.phonebookmanager.R;
+import com.example.tanvir.phonebookmanager.models.ContactsInfo;
 
 public class UserInformationActivity extends AppCompatActivity {
-
+    public static final String SHARED_PREF = "shared_pref";
+    public static final String CHECKBOX_STATE = "chacked";
     DatabaseManager databaseManager;
     Button callBt,massageBt,extraCallBt;
     TextView nameTv,phoneNumTv,emailTv;
+
+    CheckBox checkBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +39,10 @@ public class UserInformationActivity extends AppCompatActivity {
         nameTv = findViewById(R.id.contactNameTextView);
         phoneNumTv = findViewById(R.id.phoneNumberTv);
         emailTv = findViewById(R.id.emailTv);
+
+        checkBox = findViewById(R.id.favoriteCheckbox);
+
+        databaseManager=new DatabaseManager(this);
 
 
         receiveIntentValue();
@@ -50,22 +64,26 @@ public class UserInformationActivity extends AppCompatActivity {
 
 
     public void callMethod(View view) {
-        Toast.makeText(this, "Call clicked", Toast.LENGTH_SHORT).show();
+        //implement here
     }
 
     public void massageMethod(View view) {
+        //implement here
     }
 
     public void extraCallMethod(View view) {
+        //implement here
     }
 
     public void phoneNumberMethod(View view) {
-         Toast.makeText(this, "Phone number clicked", Toast.LENGTH_SHORT).show();
+        //implement here
     }
 
     public void sendMailMethod(View view) {
+        //implement here
     }
 
+    //edit button
     public void editInformationBt(View view) {
         Intent intent = new Intent(this,UpdateDataActivity.class);
         String id = getIntent().getStringExtra("id");// receiving id from contacts fragment
@@ -73,6 +91,7 @@ public class UserInformationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //on backpressed thing
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -80,5 +99,39 @@ public class UserInformationActivity extends AppCompatActivity {
         Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    //favorite contact thing
+    public void favoriteCheckbox(View view) {
+        long l=0;
+        String id = getIntent().getStringExtra("id");
+        ContactsInfo contacts = databaseManager.getContactsById(Integer.parseInt(id));
+        ContactsInfo contactsInfo=null;
+
+        boolean checked = ((CheckBox) view).isChecked();
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String phoneNum = intent.getStringExtra("phoneNum");
+        String email = intent.getStringExtra("email");
+        String description = intent.getStringExtra("description");
+
+        if(checked){
+            if(contacts.getContactRating().equals("1")){//remove contact from favorite list
+                contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"0");
+                l = databaseManager.updateContactInfo(contactsInfo);
+                if(l>0){
+                    Toast.makeText(this, "This contact removed to favorite list", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else{
+                //add contact on favorite list
+               contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"1");
+                l = databaseManager.updateContactInfo(contactsInfo);
+                if(l>0){
+                    Toast.makeText(this, "This contact added to favorite list", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }
