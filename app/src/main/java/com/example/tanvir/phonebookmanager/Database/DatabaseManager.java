@@ -96,7 +96,6 @@ public class DatabaseManager {
         String selectQuery = "select * from " + DatabaseHelper.CONTACT_TABLE
                 + " where rating = " + "1";
         Cursor cursor = sqLiteDatabase.rawQuery(selectQuery,null);
-
         while (cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.CONTACT_ID));
             String contactName = cursor.getString(cursor.getColumnIndex(DatabaseHelper.CONTACT_NAME));
