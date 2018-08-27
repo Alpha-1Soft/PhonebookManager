@@ -58,6 +58,8 @@ public class UpdateDataActivity extends AppCompatActivity {
 
     //updating information here
     public void updateMethod(){
+        ContactsInfo contacts = databaseManager.getContactsById(cId);
+        ContactsInfo contactsInfo;
         if(nameEt.getText().toString().length()==0 && numberEt.getText().toString().length()<11){
             Toast.makeText(this, "Check your name and phone number", Toast.LENGTH_SHORT).show();
         }
@@ -68,7 +70,12 @@ public class UpdateDataActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter your name.", Toast.LENGTH_SHORT).show();
         }
         else{
-            ContactsInfo contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString());
+            if(contacts.getContactRating().equals("1")){//comparing with rating, if true then we insert 1 into db again
+               contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"1");
+            }
+            else{
+                contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"0");
+            }
             long l = databaseManager.updateContactInfo(contactsInfo);//updating database here
 
             if(l>0){
