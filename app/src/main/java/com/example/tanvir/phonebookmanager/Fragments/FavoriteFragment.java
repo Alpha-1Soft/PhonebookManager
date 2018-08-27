@@ -63,7 +63,7 @@ public class FavoriteFragment extends Fragment {
         for (ContactsInfo contactsInfo:contactsInfos){
             favList.add(contactsInfo.getContactName());
         }
-
+        favsearchView.setFocusable(false);
         favListView.setEmptyView(favEmptyTv);//this function will be call when list is empty
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.listview_shape,R.id.textviewIdOnLv,favList);
         favListView.setAdapter(arrayAdapter);
