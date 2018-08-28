@@ -1,5 +1,6 @@
 package com.example.tanvir.phonebookmanager.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.tanvir.phonebookmanager.Database.DatabaseManager;
 import com.example.tanvir.phonebookmanager.Fragments.ContactsFragment;
@@ -19,13 +21,14 @@ import com.example.tanvir.phonebookmanager.R;
 import com.example.tanvir.phonebookmanager.models.ContactsInfo;
 
 public class UserInformationActivity extends AppCompatActivity {
-    public static final String SHARED_PREF = "shared_pref";
-    public static final String CHECKBOX_STATE = "chacked";
+    public static final String IS_CHECKED = "chacked";
     DatabaseManager databaseManager;
     Button callBt,massageBt,extraCallBt;
     TextView nameTv,phoneNumTv,emailTv;
 
     CheckBox checkBox;
+    SharedPreferences sharedPreferences;
+    ToggleButton toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,14 @@ public class UserInformationActivity extends AppCompatActivity {
         emailTv = findViewById(R.id.emailTv);
 
         checkBox = findViewById(R.id.favoriteCheckbox);
+        //toggleButton=findViewById(R.id.toogle);
 
         databaseManager=new DatabaseManager(this);
 
+        SharedPreferences sharedPrefs = getSharedPreferences("Mode", MODE_PRIVATE);
+        checkBox.setChecked(sharedPrefs.getBoolean("isClicked", false));
 
         receiveIntentValue();
-
     }
     //receiving all data from contact fragment activity
     public void receiveIntentValue(){
@@ -102,6 +107,7 @@ public class UserInformationActivity extends AppCompatActivity {
     }
 
     //favorite contact thing
+    @SuppressLint("ResourceAsColor")
     public void favoriteCheckbox(View view) {
         long l=0;
         String id = getIntent().getStringExtra("id");
@@ -116,22 +122,26 @@ public class UserInformationActivity extends AppCompatActivity {
         String email = intent.getStringExtra("email");
         String description = intent.getStringExtra("description");
 
+
         if(checked){
             if(contacts.getContactRating().equals("1")){//remove contact from favorite list
-                contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"0");
+                contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"0",R.drawable.staroff);
                 l = databaseManager.updateContactInfo(contactsInfo);
                 if(l>0){
                     Toast.makeText(this, "This contact removed to favorite list", Toast.LENGTH_SHORT).show();
+                    checkBox.setButtonDrawable(R.drawable.staroff);
                 }
             }
             else{
                 //add contact on favorite list
-               contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"1");
+               contactsInfo = new ContactsInfo(Integer.parseInt(id),name,phoneNum,email,description,"1",R.drawable.staron);
                 l = databaseManager.updateContactInfo(contactsInfo);
                 if(l>0){
                     Toast.makeText(this, "This contact added to favorite list", Toast.LENGTH_SHORT).show();
+                    checkBox.setButtonDrawable(R.drawable.staron);
                 }
             }
         }
     }
+
 }
