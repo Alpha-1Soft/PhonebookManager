@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tanvir.phonebookmanager">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +20,7 @@
         </activity>
         <activity android:name=".Activity.AddDataActivity" />
         <activity android:name=".Activity.UpdateDataActivity" />
-        <activity
-            android:name=".Activity.UserInformationActivity"></activity>
+        <activity android:name=".Activity.UserInformationActivity" />
     </application>
 
 </manifest>
