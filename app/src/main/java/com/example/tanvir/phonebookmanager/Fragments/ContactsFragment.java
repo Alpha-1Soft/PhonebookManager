@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tanvir.phonebookmanager.Activity.AddDataActivity;
 import com.example.tanvir.phonebookmanager.Activity.UserInformationActivity;
@@ -48,20 +49,21 @@ public class ContactsFragment extends Fragment {
         listView = view.findViewById(R.id.listView1);
 
         searchView = view.findViewById(R.id.searchView);
-        searchView.setFocusable(false);//autofocus off on searchview
 
         final ArrayList<ContactsInfo> contactsInfos = databaseManager.getAllContacts();
         ArrayList<ContactsInfo> displayList = new ArrayList<ContactsInfo>();
 
         for(ContactsInfo contactsInfo:contactsInfos){
             if(contactsInfo.getContactRating().equals("1")){
-                displayList.add(new ContactsInfo(contactsInfo.getContactName(),R.drawable.staron));
+                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getContactName(),R.drawable.staron);
+                displayList.add(contactsInfo1);
             }
             else{
-                displayList.add(new ContactsInfo(contactsInfo.getContactName(),R.drawable.blank));
+                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getContactName(),R.drawable.blank);
+                displayList.add(contactsInfo1);
             }
         }
-
+        searchView.setFocusable(false);//autofocus off on searchview
         listView.setEmptyView(emptyTv);//this function will be call when list is empty
         //adapter for connecting listview
         final ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),displayList);
@@ -76,8 +78,11 @@ public class ContactsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {//when user search on searchview this method will be called
-                contactsAdapter.getFilter().filter(s);//here, the search text will be filtered
+
+                String text = s;
+                contactsAdapter.getFilter().filter(text);
                 return false;
+                //here, the search text will be filtered
             }
         });
 
