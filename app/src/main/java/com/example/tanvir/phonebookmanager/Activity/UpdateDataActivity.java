@@ -71,10 +71,10 @@ public class UpdateDataActivity extends AppCompatActivity {
         }
         else{
             if(contacts.getContactRating().equals("1")){//comparing with rating, if true then we insert 1 into db again
-               contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"1");
+               contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"1",R.drawable.staron);
             }
             else{
-                contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"0");
+                contactsInfo = new ContactsInfo(cId,nameEt.getText().toString(),numberEt.getText().toString(),emailEt.getText().toString(),descriptionEt.getText().toString(),"0",R.drawable.staroff);
             }
             long l = databaseManager.updateContactInfo(contactsInfo);//updating database here
 
