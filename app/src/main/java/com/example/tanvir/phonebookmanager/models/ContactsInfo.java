@@ -8,8 +8,25 @@ public class ContactsInfo {
     private String contactEmail;
     private String contactDescription;
     private String contactRating;
+    private int ratingImage;
 
-    public ContactsInfo(int id, String contactName, String contactNumber, String contactEmail, String contactDescription,String contactRating) {
+
+    public ContactsInfo(String contactName,int ratingImage) {
+        this.contactName = contactName;
+        this.ratingImage = ratingImage;
+    }
+
+    public ContactsInfo(int id, String contactName, String contactNumber, String contactEmail, String contactDescription, String contactRating,int ratingImage) {
+        this.id = id;
+        this.contactName = contactName;
+        this.contactNumber = contactNumber;
+        this.contactEmail = contactEmail;
+        this.contactDescription = contactDescription;
+        this.contactRating = contactRating;
+        this.ratingImage = ratingImage;
+    }
+
+    public ContactsInfo(int id, String contactName, String contactNumber, String contactEmail, String contactDescription, String contactRating) {
         this.id = id;
         this.contactName = contactName;
         this.contactNumber = contactNumber;
@@ -17,12 +34,7 @@ public class ContactsInfo {
         this.contactDescription = contactDescription;
         this.contactRating = contactRating;
     }
-
-    public String getContactRating() {
-        return contactRating;
-    }
-
-    public ContactsInfo(String contactName, String contactNumber, String contactEmail, String contactDescription, String contactRating) {
+    public ContactsInfo(String contactName, String contactNumber, String contactEmail, String contactDescription, String contactRating ) {
         this.contactName = contactName;
         this.contactNumber = contactNumber;
         this.contactEmail = contactEmail;
@@ -49,5 +61,12 @@ public class ContactsInfo {
 
     public String getContactDescription() {
         return contactDescription;
+    }
+    public String getContactRating() {
+        return contactRating;
+    }
+
+    public int getRatingImage() {
+        return ratingImage;
     }
 }
