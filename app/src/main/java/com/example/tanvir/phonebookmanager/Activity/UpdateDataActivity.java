@@ -60,7 +60,7 @@ public class UpdateDataActivity extends AppCompatActivity {
     public void updateMethod(){
         ContactsInfo contacts = databaseManager.getContactsById(cId);
         ContactsInfo contactsInfo;
-        if(nameEt.getText().toString().length()==0 && numberEt.getText().toString().length()<11){
+        if(nameEt.getText().toString().length()==0 && numberEt.getText().toString().length()<2){
             Toast.makeText(this, "Check your name and phone number", Toast.LENGTH_SHORT).show();
         }
         else if(numberEt.getText().toString().length()<11){
