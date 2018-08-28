@@ -6,24 +6,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.tanvir.phonebookmanager.Activity.AddDataActivity;
 import com.example.tanvir.phonebookmanager.Activity.UserInformationActivity;
+import com.example.tanvir.phonebookmanager.Adapters.ContactsAdapter;
 import com.example.tanvir.phonebookmanager.Database.DatabaseManager;
 import com.example.tanvir.phonebookmanager.R;
 import com.example.tanvir.phonebookmanager.models.ContactsInfo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ContactsFragment extends Fragment {
     ListView listView;
@@ -53,16 +51,21 @@ public class ContactsFragment extends Fragment {
         searchView.setFocusable(false);//autofocus off on searchview
 
         final ArrayList<ContactsInfo> contactsInfos = databaseManager.getAllContacts();
-        ArrayList<String> displayList = new ArrayList<>();
+        ArrayList<ContactsInfo> displayList = new ArrayList<ContactsInfo>();
 
         for(ContactsInfo contactsInfo:contactsInfos){
-            displayList.add(contactsInfo.getContactName());
+            if(contactsInfo.getContactRating().equals("1")){
+                displayList.add(new ContactsInfo(contactsInfo.getContactName(),R.drawable.staron));
+            }
+            else{
+                displayList.add(new ContactsInfo(contactsInfo.getContactName(),R.drawable.blank));
+            }
         }
 
         listView.setEmptyView(emptyTv);//this function will be call when list is empty
         //adapter for connecting listview
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.listview_shape,R.id.textviewIdOnLv,displayList);
-        listView.setAdapter(adapter);
+        final ContactsAdapter contactsAdapter = new ContactsAdapter(getActivity(),displayList);
+        listView.setAdapter(contactsAdapter);
 
         //search view thing
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -73,7 +76,7 @@ public class ContactsFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {//when user search on searchview this method will be called
-                adapter.getFilter().filter(s);//here, the search text will be filtered
+                contactsAdapter.getFilter().filter(s);//here, the search text will be filtered
                 return false;
             }
         });
