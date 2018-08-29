@@ -73,13 +73,13 @@ public class UserInformationActivity extends AppCompatActivity {
         phoneNumTv.setText(phoneNum);
 
         if (email.length()==0){
-            emailTv.setText(" ");
+            emailTv.setText("");
         }
         else{
             emailTv.setText(email);
         }
         if (description.length()==0){
-            desTv.setText(" ");
+            desTv.setText("");
         }
         else{
             desTv.setText(description);
