@@ -150,7 +150,7 @@ public class ContactsFragment extends Fragment {
 
         //floating action bar function
         FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#099E18")));//fab background color
+        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5348E8")));//fab background color
         //fab.setBackgroundDrawable(R.drawable.add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
