@@ -24,6 +24,7 @@
             android:id="@+id/updateButtonId"
             android:layout_width="0dp"
             android:layout_height="55dp"
+            android:layout_marginLeft=".5dp"
             android:layout_weight="1"
             android:text="@string/update"
             android:textColor="#ffffff"
