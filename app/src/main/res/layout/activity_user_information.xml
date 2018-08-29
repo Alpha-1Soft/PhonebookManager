@@ -11,7 +11,7 @@
           android:layout_height="55dp"
           android:background="#5348E8">
           <TextView
-              android:layout_width="wrap_content"
+              android:layout_width="150dp"
               android:layout_height="wrap_content"
               android:text="@string/user_information"
               android:textColor="#ffff"
@@ -28,16 +28,27 @@
                   android:layout_height="wrap_content"
                   android:clickable="true"
                   style="?android:attr/starStyle"
-                  android:layout_marginRight="10dp"
+
                   />
               <Button
                   android:layout_width="50dp"
-                  android:layout_height="50dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="5dp"
+                  android:text="Delete"
+                  android:textColor="#ffff"
+                  android:background="@drawable/blank"
+                  android:onClick="deleteInformationBt"
+
+                  />
+              <Button
+                  android:layout_width="50dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="1dp"
                   android:text="Edit"
                   android:textColor="#ffff"
                   android:background="@drawable/blank"
                   android:onClick="editInformationBt"
-                  android:layout_marginRight="10dp"
+
                   />
           </LinearLayout>
       </android.support.v7.widget.Toolbar>
