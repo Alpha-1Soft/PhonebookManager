@@ -129,6 +129,7 @@ public class ContactsFragment extends Fragment {
                        contactsAdapter.notifyDataSetChanged();
 
                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                       getActivity().finish();
                        startActivity(intent);
 
                        dialogInterface.dismiss();
