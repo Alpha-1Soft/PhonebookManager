@@ -39,7 +39,7 @@
         android:layout_margin="4dp"
         android:background="#ffffff"
         android:orientation="vertical"
-        android:gravity="center">
+       >
         <ListView
             android:id="@+id/favListView"
             android:layout_width="match_parent"
@@ -55,8 +55,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Empty result"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             />
     </LinearLayout>
 
