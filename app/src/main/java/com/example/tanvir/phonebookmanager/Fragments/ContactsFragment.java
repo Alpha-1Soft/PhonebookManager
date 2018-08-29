@@ -1,14 +1,21 @@
 package com.example.tanvir.phonebookmanager.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -16,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tanvir.phonebookmanager.Activity.AddDataActivity;
+import com.example.tanvir.phonebookmanager.Activity.MainActivity;
 import com.example.tanvir.phonebookmanager.Activity.UserInformationActivity;
 import com.example.tanvir.phonebookmanager.Adapters.ContactsAdapter;
 import com.example.tanvir.phonebookmanager.Database.DatabaseManager;
@@ -30,6 +38,9 @@ public class ContactsFragment extends Fragment {
     TextView emptyTv;
     DatabaseManager databaseManager;
     int contactId=0;
+    ArrayList<Integer> selectList = new ArrayList<Integer>();
+    ArrayList<Integer> unDeleteSelect = new ArrayList<Integer>();
+    int countDelete = 0;
     public interface OnFragmentInteractionListener {
 
     }
@@ -51,15 +62,15 @@ public class ContactsFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
 
         final ArrayList<ContactsInfo> contactsInfos = databaseManager.getAllContacts();
-        ArrayList<ContactsInfo> displayList = new ArrayList<ContactsInfo>();
+        final ArrayList<ContactsInfo> displayList = new ArrayList<ContactsInfo>();
 
         for(ContactsInfo contactsInfo:contactsInfos){
             if(contactsInfo.getContactRating().equals("1")){
-                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getContactName(),R.drawable.staron);
+                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getId(),contactsInfo.getContactName(),R.drawable.staron);
                 displayList.add(contactsInfo1);
             }
             else{
-                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getContactName(),R.drawable.blank);
+                ContactsInfo contactsInfo1 = new ContactsInfo(contactsInfo.getId(),contactsInfo.getContactName(),R.drawable.blank);
                 displayList.add(contactsInfo1);
             }
         }
@@ -103,6 +114,39 @@ public class ContactsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+       listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+           @Override
+           public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+               final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+               alertDialog.setTitle("Attention!");
+               alertDialog.setMessage("Are you sure to delete this contact?");
+               alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int position) {
+                       databaseManager.deleteContactInfo(displayList.get(i).getId());
+                       displayList.remove(i);
+                       contactsAdapter.notifyDataSetChanged();
+
+                       Intent intent = new Intent(getActivity(), MainActivity.class);
+                       startActivity(intent);
+
+                       dialogInterface.dismiss();
+                   }
+               });
+               alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       dialogInterface.dismiss();
+                   }
+               });
+
+               alertDialog.show();
+
+               return true;
+           }
+       });
+
         //floating action bar function
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FD12F6")));//fab background color

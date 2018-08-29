@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.tanvir.phonebookmanager.Activity.MainActivity;
 import com.example.tanvir.phonebookmanager.Activity.UserInformationActivity;
+import com.example.tanvir.phonebookmanager.Adapters.ContactsAdapter;
 import com.example.tanvir.phonebookmanager.Database.DatabaseManager;
 import com.example.tanvir.phonebookmanager.R;
 import com.example.tanvir.phonebookmanager.models.ContactsInfo;
@@ -29,6 +30,8 @@ public class FavoriteFragment extends Fragment {
     TextView favEmptyTv;
     SearchView favsearchView;
     int contactId = 0;
+    ArrayList<ContactsInfo> favList = new ArrayList<>();
+    ContactsAdapter contactsAdapter;
 
     public interface OnFragmentInteractionListener {
 
@@ -58,15 +61,14 @@ public class FavoriteFragment extends Fragment {
 
         final ArrayList<ContactsInfo> contactsInfos = databaseManager.getContactByFavorite();
         final ArrayList<ContactsInfo> contactsInfoss = databaseManager.getAllContacts();
-        ArrayList<String> favList = new ArrayList<>();
 
         for (ContactsInfo contactsInfo:contactsInfos){
-            favList.add(contactsInfo.getContactName());
+            favList.add(new ContactsInfo(contactsInfo.getId(),contactsInfo.getContactName(),R.drawable.blank));
         }
         favsearchView.setFocusable(false);
         favListView.setEmptyView(favEmptyTv);//this function will be call when list is empty
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.listview_shape,R.id.textviewIdOnLv,favList);
-        favListView.setAdapter(arrayAdapter);
+        contactsAdapter = new ContactsAdapter(getActivity(),favList);
+        favListView.setAdapter(contactsAdapter);
 
         favsearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -76,7 +78,7 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {//when user search on searchview this method will be called
-                arrayAdapter.getFilter().filter(s);//here, the search text will be filtered
+                contactsAdapter.getFilter().filter(s);//here, the search text will be filtered
                 return false;
             }
         });
