@@ -3,6 +3,7 @@ package com.example.tanvir.phonebookmanager.Activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -225,16 +226,31 @@ public class UserInformationActivity extends AppCompatActivity  {
 
 
     public void deleteInformationBt(View view) {
+        String id = getIntent().getStringExtra("id");
+        selectedid=Integer.parseInt(id);
 
-        long deleteRow=databaseManager.deleteContactInfo(1);
-        if(deleteRow>0){
+        long deleteRow=databaseManager.deleteContactInfo(selectedid);
+        final android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
+        alertDialog.setTitle("Attention!");
+        alertDialog.setMessage("Are you sure to delete this contact?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position) {
 
-            Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
-        else {
-            Toast.makeText(this,"something wrong",Toast.LENGTH_SHORT).show();
-        }
+                Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
+                finish();
+                startActivity(intent);
+
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 }
