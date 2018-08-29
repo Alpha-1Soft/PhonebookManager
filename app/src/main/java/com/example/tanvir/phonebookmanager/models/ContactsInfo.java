@@ -10,8 +10,14 @@ public class ContactsInfo {
     private String contactRating;
     private int ratingImage;
 
-
     public ContactsInfo(String contactName,int ratingImage) {
+        this.contactName = contactName;
+        this.ratingImage = ratingImage;
+    }
+
+
+    public ContactsInfo(int id,String contactName,int ratingImage) {
+        this.id = id;
         this.contactName = contactName;
         this.ratingImage = ratingImage;
     }
