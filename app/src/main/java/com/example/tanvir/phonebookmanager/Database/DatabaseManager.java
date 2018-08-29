@@ -85,7 +85,7 @@ public class DatabaseManager {
             String contactEmail = cursor.getString(cursor.getColumnIndex(DatabaseHelper.CONTACT_EMAIL));
             String contactDescription = cursor.getString(cursor.getColumnIndex(DatabaseHelper.CONTACT_DESCRIPTION));
             String contactRating = cursor.getString(cursor.getColumnIndex(DatabaseHelper.CONTACT_RATING));
-            contactsInfo = new ContactsInfo(id, contactName, contactNumber, contactEmail, contactDescription, contactRating);
+            contactsInfo = new ContactsInfo(id, contactName, contactNumber, contactEmail, contactDescription,contactRating);
         }
         return contactsInfo;
     }
