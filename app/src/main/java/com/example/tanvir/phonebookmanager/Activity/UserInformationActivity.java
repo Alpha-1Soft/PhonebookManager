@@ -26,10 +26,11 @@ import com.example.tanvir.phonebookmanager.Fragments.FavoriteFragment;
 import com.example.tanvir.phonebookmanager.R;
 import com.example.tanvir.phonebookmanager.models.ContactsInfo;
 
-public class UserInformationActivity extends AppCompatActivity {
+public class UserInformationActivity extends AppCompatActivity  {
     public static final String IS_CHECKED = "chacked";
     DatabaseManager databaseManager;
     Button callBt,massageBt,extraCallBt;
+    int selectedid=0;
     TextView nameTv,phoneNumTv,emailTv,desTv;
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
 
@@ -223,4 +224,17 @@ public class UserInformationActivity extends AppCompatActivity {
     }
 
 
+    public void deleteInformationBt(View view) {
+
+        long deleteRow=databaseManager.deleteContactInfo(1);
+        if(deleteRow>0){
+
+            Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this,"something wrong",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
