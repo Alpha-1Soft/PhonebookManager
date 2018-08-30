@@ -229,17 +229,23 @@ public class UserInformationActivity extends AppCompatActivity  {
         String id = getIntent().getStringExtra("id");
         selectedid=Integer.parseInt(id);
 
-        long deleteRow=databaseManager.deleteContactInfo(selectedid);
         final android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
         alertDialog.setTitle("Attention!");
         alertDialog.setMessage("Are you sure to delete this contact?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int position) {
+                long deleteRow=databaseManager.deleteContactInfo(selectedid);
+                if(deleteRow>0){
+                    Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
+                    finish();
+                    Toast.makeText(UserInformationActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(UserInformationActivity.this, "Something wrong!", Toast.LENGTH_SHORT).show();
+                }
 
-                Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
-                finish();
-                startActivity(intent);
 
                 dialogInterface.dismiss();
             }
